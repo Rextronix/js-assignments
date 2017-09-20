@@ -99,7 +99,7 @@ function getFirstChar(value) {
  *   '\tHello, World! ' => 'Hello, World!'
  */
 function removeLeadingAndTrailingWhitespaces(value) {
-    return value.replace(/[ ]{2,}|\t| $/g, '')
+    return value.replace(/[ ]{2,}|\t| $/g, '');
 }
 
 /**
@@ -114,7 +114,10 @@ function removeLeadingAndTrailingWhitespaces(value) {
  *   'cat', 3 => 'catcatcat'
  */
 function repeatString(value, count) {
-    throw new Error('Not implemented');
+    var buffer = "";
+    for (var i = 0; i < count ; i++)
+        buffer += value;
+    return buffer;
 }
 
 /**
@@ -130,7 +133,11 @@ function repeatString(value, count) {
  *   'ABABAB','BA' => 'ABAB'
  */
 function removeFirstOccurrences(str, value) {
-    throw new Error('Not implemented');
+    var firstOccur = str.indexOf(value);
+    var quantSymbols = value.length;
+    var beforeValue = str.substring(0, firstOccur);
+    var afterValue = str.substring(firstOccur + value.length);
+    return beforeValue + afterValue;
 }
 
 /**
@@ -145,7 +152,7 @@ function removeFirstOccurrences(str, value) {
  *   '<a>' => 'a'
  */
 function unbracketTag(str) {
-    throw new Error('Not implemented');
+    return str.substring(1, str.length - 1);
 }
 
 
@@ -160,7 +167,7 @@ function unbracketTag(str) {
  *  'abcdefghijklmnopqrstuvwxyz' => 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
  */
 function convertToUpperCase(str) {
-    throw new Error('Not implemented');
+    return str.toUpperCase();
 }
 
 /**
