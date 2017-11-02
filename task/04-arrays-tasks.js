@@ -444,7 +444,13 @@ function sortCitiesArray(arr) {
  *           [0,0,0,0,1]]   
  */
 function getIdentityMatrix(n) {
-   throw new Error('Not implemented');
+    return new Array(n)
+    .fill([])
+    .map((a, i) => {
+        a = new Array(n).fill(0);
+        a[i] = 1;
+        return a;
+    });
 }
 
 /**
@@ -461,7 +467,7 @@ function getIdentityMatrix(n) {
  *     3, 3   => [ 3 ]
  */
 function getIntervalArray(start, end) {
-   throw new Error('Not implemented');
+    return Array.from({length: end - start + 1}, v => v = start++);
 }
 
 /**
@@ -476,7 +482,7 @@ function getIntervalArray(start, end) {
  *   [ 1, 1, 2, 2, 3, 3, 4, 4] => [ 1, 2, 3, 4]
  */
 function distinct(arr) {
-   throw new Error('Not implemented');
+    return arr.filter((el, i, ar) => arr.indexOf(el) === i);
 }
 
 /**
@@ -510,7 +516,13 @@ function distinct(arr) {
  *   }
  */
 function group(array, keySelector, valueSelector) {
-   throw new Error('Not implemented');
+    return array.reduce((a, v) => {
+        var arr = a.get(keySelector(v)) || [];
+        arr.push(valueSelector(v));
+        a.set(keySelector(v), arr);
+        return a;
+    }, 
+    new Map);
 }
 
 
@@ -526,7 +538,7 @@ function group(array, keySelector, valueSelector) {
  *   ['one','two','three'], x=>x.split('')  =>   ['o','n','e','t','w','o','t','h','r','e','e']
  */
 function selectMany(arr, childrenSelector) {
-    throw new Error('Not implemented');
+    return arr.reduce((a, v) => a.concat(childrenSelector(v)), []);
 }
 
 
@@ -543,7 +555,7 @@ function selectMany(arr, childrenSelector) {
  *   [[[ 1, 2, 3]]], [ 0, 0, 1 ]      => 2        (arr[0][0][1])
  */
 function getElementByIndexes(arr, indexes) {
-    throw new Error('Not implemented');
+    return indexes.reduce((prev, curr) => prev[curr], arr);
 }
 
 
@@ -566,7 +578,9 @@ function getElementByIndexes(arr, indexes) {
  * 
  */
 function swapHeadAndTail(arr) {
-    throw new Error('Not implemented');
+    var h = arr.length / 2;
+    var tail = arr.splice(-h, h).concat(arr);
+    return tail.concat(tail.splice(h, h));
 }
 
 
